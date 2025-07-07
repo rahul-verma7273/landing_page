@@ -1,0 +1,891 @@
+import { useState, useEffect, useRef } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import banner from "./assets/photo/banner-1.jpg";
+import photo from "./assets/photo/img-1.jpg";
+import logo from "./assets/photo/logo-white.png";
+import icon from "./assets/photo/icon-1.png";
+import icon1 from "./assets/photo/icon-2.png";
+import icon2 from "./assets/photo/icon-3.png";
+import icon3 from "./assets/photo/icon-4.png";
+import img from "./assets/photo/Screenshot_1-7-2025_121751_unionagency.one.jpeg";
+import port1 from "./assets/photo/portfolio-1.jpg";
+import port2 from "./assets/photo/portfolio-2.jpg";
+import port3 from "./assets/photo/portfolio-3.jpg";
+import port4 from "./assets/photo/portfolio-4.jpg";
+import port5 from "./assets/photo/portfolio-5.jpg";
+import port6 from "./assets/photo/portfolio-6.jpg";
+import auth1 from "./assets/photo/author-1.png";
+import auth2 from "./assets/photo/author-2.png";
+import auth3 from "./assets/photo/author-3.png";
+import quot from "./assets/photo/quotes.png";
+import sign from "./assets/photo/signature.png";
+import home1 from "./assets/photo/home-5.png";
+import home2 from "./assets/photo/home-6.png";
+import home3 from "./assets/photo/home-7.png";
+import cli1 from "./assets/photo/client-1.png";
+import cli2 from "./assets/photo/client-2.png";
+import cli3 from "./assets/photo/client-3.png";
+import cli4 from "./assets/photo/client-4.png";
+import cli5 from "./assets/photo/client-5.png";
+import cli6 from "./assets/photo/client-6.png";
+import cli7 from "./assets/photo/client-7.png";
+import cli8 from "./assets/photo/client-8.png";
+import cli9 from "./assets/photo/client-9.png";
+import cli10 from "./assets/photo/client-10.png";
+import cli11 from "./assets/photo/client-11.png";
+import cli12 from "./assets/photo/client-12.png";
+import team1 from "./assets/photo/team-1.jpg";
+import team2 from "./assets/photo/team-2.jpg";
+import team3 from "./assets/photo/team-3.jpg";
+import icon8 from "./assets/photo/icon-8.png";
+import icon9 from "./assets/photo/icon-9.png";
+import icon10 from "./assets/photo/icon-10.png";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaPinterestP,
+  FaTwitter,
+  FaGoogle,
+} from "react-icons/fa";
+import inst1 from "./assets/photo/instagram-1 (1).jpg";
+import inst2 from "./assets/photo/instagram-2.jpg";
+import inst3 from "./assets/photo/instagram-3.jpg";
+import inst4 from "./assets/photo/instagram-4.jpg";
+import inst5 from "./assets/photo/instagram-5.jpg";
+import inst6 from "./assets/photo/instagram-6.jpg";
+import "./App.css";
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const mainContentRef = useRef(null);
+  const sidebarRef = useRef(null);
+
+  // Carousel data
+  const carouselItems = [
+    {
+      id: 1,
+      title: "The Best Ever Digital Agency",
+      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque.",
+      image: banner,
+    },
+    {
+      id: 2,
+      title: "Creative Design Solutions",
+      description: "Innovative designs that transform your business and captivate your audience with stunning visuals.",
+      image: port1,
+    },
+    {
+      id: 3,
+      title: "Strategic Branding",
+      description: "Comprehensive branding strategies to establish your unique identity in the market.",
+      image: port2,
+    },
+  ];
+
+  // Testimonials data
+  const testimonials = [
+    {
+      id: 1,
+      name: "Anjelina Jonson",
+      role: "Web-designer",
+      quote: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames something ac turpis egestas making better lacus, vitae eleifend nisi eleifend somethoing make better Cras consectetur dolor massa, in rhoncus ante",
+      image: auth1,
+    },
+    {
+      id: 2,
+      name: "Michael Brown",
+      role: "Marketing Director",
+      quote: "The team delivered exceptional results that exceeded our expectations. Their attention to detail and creative approach made all the difference in our campaign.",
+      image: auth2,
+    },
+    {
+      id: 3,
+      name: "Sarah Williams",
+      role: "CEO",
+      quote: "Working with this agency transformed our online presence. Their strategic insights and technical expertise were invaluable to our growth.",
+      image: auth3,
+    },
+  ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setMenuOpen(true);
+      } else {
+        setMenuOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    const handleScroll = () => {
+      if (mainContentRef.current && sidebarRef.current) {
+        const heroHeight = document.querySelector('.hero-section')?.offsetHeight || 0;
+        const scrollPosition = window.scrollY;
+        
+        // Show sidebar only after scrolling past hero section
+        if (scrollPosition > heroHeight) {
+          setShowSidebar(true);
+          setIsSticky(true);
+        } else {
+          setShowSidebar(false);
+          setIsSticky(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === carouselItems.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? carouselItems.length - 1 : prev - 1));
+  };
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  return (
+    <div className="relative flex flex-col md:flex-row min-h-screen overflow-x-hidden">
+      {/* Mobile Menu Button */}
+      {isMobile && (
+        <button
+          className="fixed bottom-4 right-4 z-50 bg-pink-600 text-white p-3 rounded-full shadow-lg"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
+      )}
+
+      {/* Main Content */}
+      <div 
+        ref={mainContentRef}
+        className={`flex-1 bg-white w-full`}
+        style={{ minWidth: 0 }}
+      >
+        {/* Hero Section with Carousel */}
+        <div className="relative h-screen w-full hero-section">
+          <img
+            src={carouselItems[currentSlide].image}
+            className="absolute inset-0 w-full h-full object-cover"
+            alt="Banner"
+          />
+          <div className="absolute inset-0 bg-opacity-50 z-10" />
+
+          <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-5 space-y-0">
+            {!isMobile && (
+              <div className="w-full flex justify-between items-center md:px-10">
+                <button
+                  className="text-white text-3xl absolute top-80 left-10"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  {menuOpen ? <FiX /> : <FiMenu />}
+                </button>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-12 w-auto absolute right-10 top-80"
+                />
+              </div>
+            )}
+
+            <p className="text-white uppercase text-sm mt-0">We are</p>
+            <h1 className="text-white uppercase text-4xl md:text-6xl font-black leading-tight">
+              {carouselItems[currentSlide].title}
+            </h1>
+            <p className="text-white max-w-xl text-sm md:text-base">
+              {carouselItems[currentSlide].description}
+            </p>
+            <a
+              href="#"
+              className="mt-5 bg-pink-500 text-white px-10 py-2 rounded hover:bg-white hover:text-pink-500 transition font-semibold uppercase"
+            >
+              View More
+            </a>
+          </div>
+        </div>
+
+      {/* Combined Navigation Controls, Slide Count, and Share Section */}
+<div
+  className="flex flex-nowrap justify-between items-center gap-2 md:gap-4 p-2 md:p-4 border-b"
+  style={{ marginLeft: !isMobile ? '16rem' : '0' }}
+>
+  {/* Navigation Controls and Slide Count */}
+  <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
+    <button
+      onClick={prevSlide}
+      className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
+    >
+      <span className="ml-0.5">&#10094;</span>
+    </button>
+
+    <div className="flex items-center gap-0.5 md:gap-2 text-[10px] md:text-sm">
+      <span>{currentSlide + 1}</span>
+      <div className="w-6 md:w-8 h-px bg-black"></div>
+      <span>{carouselItems.length}</span>
+    </div>
+
+    <button
+      onClick={nextSlide}
+      className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
+    >
+      <span className="ml-0.5">&#10095;</span>
+    </button>
+  </div>
+
+  {/* Scroll Down Button */}
+  <div className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+    <button className="animate-bounce">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 md:h-8 w-3 md:w-5 text-gray-600 hover:text-pink-600 transition"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </button>
+  </div>
+
+  {/* Share Section */}
+  <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
+    <h4 className="text-[10px] md:text-base lg:text-lg font-medium">Share:</h4>
+    <div className="flex gap-1 md:gap-2 text-sm md:text-lg text-black">
+      <FaInstagram className="hover:text-pink-500 transition cursor-pointer" />
+      <FaFacebookF className="hover:text-pink-500 transition cursor-pointer" />
+      <FaTwitter className="hover:text-pink-500 transition cursor-pointer" />
+      <FaPinterestP className="hover:text-pink-500 transition cursor-pointer" />
+      <FaGoogle className="hover:text-pink-500 transition cursor-pointer" />
+    </div>
+  </div>
+</div>
+
+
+
+        {/* Sidebar - Placed after carousel in DOM */}
+ <div
+  ref={sidebarRef}
+  className={`${isMobile ? 'fixed' : isSticky ? 'fixed top-0' : 'absolute top-[100vh]'} ${
+    isMobile
+      ? `left-0 right-0 h-3/4 z-40 transition-transform duration-300 ease-in-out ${
+          menuOpen ? 'translate-y-0' : 'translate-y-full'
+        }`
+      : `left-0 w-64 z-30 transition-all duration-300`
+  }`}
+>
+  <div
+    className={`bg-pink-600 text-white shadow-md p-4 space-y-3 ${
+      isSticky ? 'h-screen overflow-y-auto' : 'h-full'
+    }`}
+  >
+    {!isMobile && (
+      <div className="flex justify-between items-center px-4 py-2">
+        <button
+          className="text-white text-3xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FiX /> : <FiMenu />}
+        </button>
+        <img src={logo} alt="Logo" className="h-12 w-auto" />
+      </div>
+    )}
+    <ul className="space-y-1 text-sm uppercase font-medium">
+      {[
+        'Home',
+        'About',
+        'Services',
+        'Portfolio',
+        'Testimonials',
+        'Pricing',
+        'Client',
+        'Team',
+        'Contact',
+        'Blog',
+      ].map((item, index) => (
+        <li key={index}>
+          <a
+            href="#"
+            className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
+            onClick={() => isMobile && setMenuOpen(false)}
+          >
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div className="flex space-x-5 text-white text-2xl ml-5 mt-5">
+      <FaFacebookF className="hover:text-black cursor-pointer" />
+      <FaInstagram className="hover:text-black cursor-pointer" />
+      <FaPinterestP className="hover:text-black cursor-pointer" />
+      <FaTwitter className="hover:text-black cursor-pointer" />
+    </div>
+    <ul className="text-white mt-8 ml-5">
+      <li>+38 098 236 75 36</li>
+      <li>info@bloom.com</li>
+    </ul>
+  </div>
+</div>
+
+
+
+        {/* About Us Section */}
+        <div className="p-4 md:p-10 relative"  style={{ marginLeft: !isMobile  ? '16rem' : '0' }}>
+          <h4 className="text-pink-600">ABOUT US</h4>
+          <h1 className="text-4xl font-bold mt-2">WHO WE ARE</h1>
+
+          <div className="mt-8 md:flex">
+            <div className="md:w-1/3">
+              <img
+                src={photo}
+                alt="About"
+                className="h-80 w-80 rounded mx-auto md:mx-0"
+              />
+              <a
+                href="#"
+                className="inline-block text-white px-12 py-2 bg-black rounded hover:bg-pink-600 transition font-semibold uppercase mt-6"
+              >
+                View More
+              </a>
+            </div>
+
+            <div className="mt-8 md:mt-0 md:w-2/3 md:pl-8">
+              <h2 className="text-lg font-bold">ALL AT A GLANCE</h2>
+              <p className="text-sm text-gray-700 mt-2">
+                Phasellus mattis magna vel augue gravida eleifend. Donec sit
+                amet diam mollis, sodales lorem vel, some orci. Proin nec
+                mauris lectus. Vitae dictum urna bibendum hasellus making
+                elementum ex turpis something hendrerit diam.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-gray-700">
+                <li className="flex items-start">
+                  <span className="mr-2">✔</span>
+                  <span>
+                    Aenean ultricies nec lectus et porta. Etiam vitae diam at
+                    nunc laoreet pretium quis finibus something the best nisi.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">✔</span>
+                  <span>
+                    In eleifend, quis egestas euismod, dui elit cursus lacus,
+                    quis iaculis sem augue non urna making the perfect.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section */}
+        <div className="bg-black text-white text-center py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <h6 className="text-pink-600 uppercase mb-4">services</h6>
+          <h1 className="text-4xl font-bold mb-4">WHAT WE DO</h1>
+          <p className="mb-10 max-w-xl mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+            elementum id metus ac tempus velit volutpat.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { icon: icon, title: "DIGINISSM" },
+              { icon: icon1, title: "CORPORATIVE" },
+              { icon: icon2, title: "IDENTITY" },
+              { icon: icon3, title: "CONDIMENTUM" },
+            ].map((service, index) => (
+              <div key={index} className="space-y-4 p-4">
+                <a href="#">
+                  <img
+                    src={service.icon}
+                    alt={service.title}
+                    className="mx-auto h-16"
+                  />
+                  <h2 className="text-white mt-2">{service.title}</h2>
+                </a>
+                <p className="text-sm">
+                  Cras quis augue at diam dignissim vestibulum ut eleifend,
+                  quis egestas euismod, dui elit cursus
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <h4 className="text-pink-600">ABOUT PRODUCT</h4>
+          <h1 className="text-4xl font-extrabold mt-2">OUR FEATURES</h1>
+
+          <div className="mt-10 md:flex">
+            <div className="md:w-1/2 space-y-8">
+              {[
+                {
+                  num: "01",
+                  title: "Modern Design",
+                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                },
+                {
+                  num: "02",
+                  title: "Strong UX design",
+                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                },
+                {
+                  num: "03",
+                  title: "Responsive",
+                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                },
+              ].map((feature, index) => (
+                <div key={index} className="flex">
+                  <h1 className="text-4xl font-bold text-pink-600 mr-4">
+                    {feature.num}
+                  </h1>
+                  <div className="bg-white shadow-lg p-4 flex-1">
+                    <h1 className="text-lg font-bold">{feature.title}</h1>
+                    <p className="py-2">{feature.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 md:mt-0 md:w-1/2 md:pl-8">
+              <img
+                src={img}
+                alt="Features"
+                className="w-full h-auto max-w-md mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Portfolio Section */}
+        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h6 className="text-pink-600">PORTFOLIO</h6>
+            <h1 className="text-4xl md:text-5xl font-extrabold mt-4">
+              OUR WORKS
+            </h1>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              <br />
+              cras elementum id metus ac tempus velit volutpat
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {["All", "Design", "Advertising", "UserExpirience", "Branding"].map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className={`h-10 px-4 flex items-center ${
+                    index === 0 ? "bg-pink-600" : "hover:bg-pink-600"
+                  }`}
+                >
+                  <a href="#" className="text-white">
+                    {item}
+                  </a>
+                </div>
+              )
+            )}
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[port1, port2, port3, port4, port5, port6].map((port, index) => (
+              <div key={index} className="relative group">
+                <img
+                  src={port}
+                  alt={`Portfolio ${index + 1}`}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                  <button className="bg-pink-600 text-white px-6 py-2 hover:bg-white hover:text-pink-600 transition">
+                    View More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="p-4 md:p-10 relative" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <h6 className="text-pink-600">THOUGHTS</h6>
+          <h1 className="text-4xl md:text-5xl font-extrabold mt-2">
+            TESTIMONIALS
+          </h1>
+
+          <div className="mt-10 md:flex">
+            <div className="md:w-1/3 flex justify-center">
+              <img
+                src={testimonials[currentTestimonial].image}
+                alt="Author"
+                className="w-32 h-32 rounded-full object-cover"
+              />
+            </div>
+
+            <div className="mt-8 md:mt-0 md:w-2/3 md:pl-8">
+              <div className="flex justify-center md:justify-start">
+                <img src={quot} alt="Quotes" className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mt-4 text-center md:text-left">
+                {testimonials[currentTestimonial].name}
+              </h3>
+              <span className="text-sm text-center md:text-left block">
+                {testimonials[currentTestimonial].role}
+              </span>
+              <p className="mt-4 font-bold text-lg text-center md:text-left">
+                {testimonials[currentTestimonial].quote}
+              </p>
+              <div className="flex justify-center md:justify-start mt-4">
+                <img src={sign} alt="Signature" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-between mt-8">
+            <button 
+              onClick={prevTestimonial}
+              className="h-10 w-10 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition"
+            >
+              <span className="ml-1">&#10094;</span>
+            </button>
+            <button 
+              onClick={nextTestimonial}
+              className="h-10 w-10 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition"
+            >
+              <span className="ml-1">&#10095;</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Pricing Section */}
+        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h6 className="text-pink-600">OFFERS</h6>
+            <h1 className="text-4xl md:text-5xl font-extrabold mt-4">
+              THE BEST PRICE
+            </h1>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit cras
+              <br />
+              elementum id metus ac tempus velit volutpat
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                icon: home1,
+                title: "Standard",
+                price: "$49",
+                period: "Per Packet",
+                features: [
+                  "ANIMALS consecte dipiscing",
+                  "CURABITUR feugiat feugiat",
+                  "NULLAM faucibus metus lorem",
+                  "MAKING something good",
+                ],
+              },
+              {
+                icon: home2,
+                title: "Business",
+                price: "$99",
+                period: "Per Packet",
+                features: [
+                  "ANIMALS consecte dipiscing",
+                  "CURABITUR feugiat feugiat",
+                  "NULLAM faucibus metus lorem",
+                  "MAKING something good",
+                ],
+              },
+              {
+                icon: home3,
+                title: "Premium",
+                price: "$149",
+                period: "Per Packet",
+                features: [
+                  "ANIMALS consecte dipiscing",
+                  "CURABITUR feugiat feugiat",
+                  "NULLAM faucibus metus lorem",
+                  "MAKING something good",
+                ],
+              },
+            ].map((plan, index) => (
+              <div
+                key={index}
+                className="bg-white text-black p-8 rounded-lg relative"
+              >
+                <div className="w-24 h-24 rounded-full bg-white shadow-lg absolute -top-12 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                  <img src={plan.icon} alt={plan.title} className="w-12 h-12" />
+                </div>
+                <h2 className="text-2xl font-bold text-center mt-12 mb-4 relative inline-block">
+                  <span className="relative z-10">{plan.title}</span>
+                  <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                </h2>
+                <p className="text-center mb-6">
+                  Phasellus faucibus, urna ac sagittis varius, magna arcu
+                  blandit
+                </p>
+                <div className="text-center mb-6">
+                  <a
+                    href="#"
+                    className="font-bold text-4xl hover:text-pink-600"
+                  >
+                    {plan.price}
+                    <sup>99</sup>
+                  </a>
+                  <p>{plan.period}</p>
+                </div>
+                <ul className="space-y-2 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="text-sm">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className="w-full bg-black text-white py-2 hover:bg-pink-600 transition">
+                  BUY IT NOW
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Clients Section */}
+        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <h6 className="text-pink-600">CUSTOMERS</h6>
+          <h1 className="text-4xl font-black mt-2">CLIENTS</h1>
+
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {[
+              cli1,
+              cli2,
+              cli3,
+              cli4,
+              cli5,
+              cli6,
+              cli7,
+              cli8,
+              cli9,
+              cli10,
+              cli11,
+              cli12,
+            ].map((client, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-90"
+              >
+                <img
+                  src={client}
+                  alt={`Client ${index + 1}`}
+                  className="w-full h-auto max-h-16 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center space-x-2 mt-8">
+            <div className="h-2 w-2 rounded-full bg-pink-500"></div>
+            <div className="h-2 w-2 rounded-full bg-gray-300"></div>
+            <div className="h-2 w-2 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h6 className="text-pink-600">WORKERS</h6>
+            <h1 className="text-4xl md:text-5xl font-bold mt-4">
+              THE BEST TEAM
+            </h1>
+            <p className="mt-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit cras
+              <br />
+              elementum id metus ac tempus velit volutpat
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { img: team1, name: "Angelina Jonson", role: "Web-Designer" },
+              { img: team2, name: "Angelina Jonson", role: "Web-Designer" },
+              { img: team3, name: "Angelina Jonson", role: "Web-Designer" },
+            ].map((member, index) => (
+              <div key={index} className="text-center">
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-auto"
+                />
+                <div className="mt-4">
+                  <a
+                    href="#"
+                    className="text-xl font-bold hover:text-pink-600"
+                  >
+                    {member.name}
+                  </a>
+                  <p className="text-white mt-2">{member.role}</p>
+                </div>
+                <div className="flex justify-center space-x-4 text-xl text-white mt-4">
+                  <FaFacebookF className="hover:text-pink-500 cursor-pointer" />
+                  <FaInstagram className="hover:text-pink-500 cursor-pointer" />
+                  <FaPinterestP className="hover:text-pink-500 cursor-pointer" />
+                  <FaTwitter className="hover:text-pink-500 cursor-pointer" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+          <h6 className="text-pink-600">CONTACT</h6>
+          <h1 className="text-4xl md:text-5xl font-bold mt-2">KEEP IN TOUCH</h1>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <img src={icon8} alt="Address" className="w-12 h-12 mx-auto" />
+              <h3 className="text-xl font-bold mt-4">Address</h3>
+              <ul className="mt-2 space-y-1">
+                <li className="hover:text-pink-600 cursor-pointer">
+                  319 Clematis
+                </li>
+                <li className="hover:text-pink-600 cursor-pointer">
+                  St.Suit,100 WPB,
+                </li>
+                <li className="hover:text-pink-600 cursor-pointer">FL 33401</li>
+              </ul>
+            </div>
+
+            <div className="text-center">
+              <img src={icon9} alt="Phone" className="w-12 h-12 mx-auto" />
+              <h3 className="text-xl font-bold mt-4">Phone</h3>
+              <ul className="mt-2 space-y-1">
+                <li className="hover:text-pink-600 cursor-pointer">
+                  +38 098 236 75 36
+                </li>
+                <li className="hover:text-pink-600 cursor-pointer">
+                  +38 098 236 75 36
+                </li>
+              </ul>
+            </div>
+
+            <div className="text-center">
+              <img src={icon10} alt="Email" className="w-12 h-12 mx-auto" />
+              <h3 className="text-xl font-bold mt-4">E-mail</h3>
+              <ul className="mt-2 space-y-1">
+                <li className="hover:text-pink-600 cursor-pointer">
+                  info@bloom.com
+                </li>
+                <li className="hover:text-pink-600 cursor-pointer">
+                  admin@bloom.com
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="mt-10 bg-white shadow-lg p-6 max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold mb-6">
+              Do you have any question?
+            </h2>
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full outline-none border-b border-gray-300 focus:border-pink-600 p-2"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full outline-none border-b border-gray-300 focus:border-pink-600 p-2"
+                />
+              </div>
+              <textarea
+                placeholder="Message"
+                className="w-full outline-none border-b border-gray-300 focus:border-pink-600 p-2 h-24"
+              ></textarea>
+              <button className="bg-black text-white px-8 py-2 hover:bg-pink-600 transition mt-4">
+                SEND MESSAGE
+              </button>
+            </form>
+          </div>
+        </div>
+
+
+        {/* Instagram Gallery */}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
+          {[inst1, inst2, inst3, inst4, inst5, inst6].map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Instagram ${index + 1}`}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
+          ))}
+        </div>
+
+        {/* Map */}
+        <div className="mt-10" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
+          <iframe
+            className="w-full h-64 md:h-96"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14009.794362831062!2d77.29806295!3d28.4022201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cdb1e486911f1%3A0x27cfdc9dfd7de52e!2sSector%2029%2C%20Faridabad%2C%20Haryana!5e0!3m2!1sen!2sin!4v1688482335012!5m2!1sen!2sin"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Google Map"
+          ></iframe>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-black text-white py-8 px-4" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <h1 className="text-xl font-bold">
+                © 2025 All rights reserved. Development with ❤ by
+                <br />
+                JBH Tech.
+              </h1>
+            </div>
+            <div className="mt-4 md:mt-0 flex items-center space-x-4">
+              <h4 className="text-pink-600">Follow me:</h4>
+              <div className="flex space-x-4 text-xl">
+                <FaFacebookF className="hover:text-pink-500 cursor-pointer" />
+                <FaInstagram className="hover:text-pink-500 cursor-pointer" />
+                <FaPinterestP className="hover:text-pink-500 cursor-pointer" />
+                <FaTwitter className="hover:text-pink-500 cursor-pointer" />
+                <FaGoogle className="hover:text-pink-500 cursor-pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
