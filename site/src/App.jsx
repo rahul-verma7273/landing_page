@@ -167,15 +167,13 @@ function App() {
 
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen overflow-x-hidden">
-      {/* Mobile Menu Button */}
-      {isMobile && (
-        <button
-          className="fixed bottom-4 right-4 z-50 bg-pink-600 text-white p-3 rounded-full shadow-lg"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      )}
+      {/* Mobile Menu Button - Positioned same as desktop */}
+      <button
+        className={`fixed top-4 left-4 z-50 bg-pink-600 text-white p-3 rounded-full shadow-lg ${isMobile ? 'block' : 'hidden'}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+      </button>
 
       {/* Main Content */}
       <div 
@@ -225,134 +223,130 @@ function App() {
           </div>
         </div>
 
-      {/* Combined Navigation Controls, Slide Count, and Share Section */}
-<div
-  className="flex flex-nowrap justify-between items-center gap-2 md:gap-4 p-2 md:p-4 border-b"
-  style={{ marginLeft: !isMobile ? '16rem' : '0' }}
->
-  {/* Navigation Controls and Slide Count */}
-  <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
-    <button
-      onClick={prevSlide}
-      className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
-    >
-      <span className="ml-0.5">&#10094;</span>
-    </button>
+        {/* Combined Navigation Controls, Slide Count, and Share Section */}
+        <div
+          className="flex flex-nowrap justify-between items-center gap-2 md:gap-4 p-2 md:p-4 border-b"
+          style={{ marginLeft: !isMobile ? '16rem' : '0' }}
+        >
+          {/* Navigation Controls and Slide Count */}
+          <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
+            <button
+              onClick={prevSlide}
+              className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
+            >
+              <span className="ml-0.5">&#10094;</span>
+            </button>
 
-    <div className="flex items-center gap-0.5 md:gap-2 text-[10px] md:text-sm">
-      <span>{currentSlide + 1}</span>
-      <div className="w-6 md:w-8 h-px bg-black"></div>
-      <span>{carouselItems.length}</span>
-    </div>
+            <div className="flex items-center gap-0.5 md:gap-2 text-[10px] md:text-sm">
+              <span>{currentSlide + 1}</span>
+              <div className="w-6 md:w-8 h-px bg-black"></div>
+              <span>{carouselItems.length}</span>
+            </div>
 
-    <button
-      onClick={nextSlide}
-      className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
-    >
-      <span className="ml-0.5">&#10095;</span>
-    </button>
-  </div>
+            <button
+              onClick={nextSlide}
+              className="h-6 w-6 md:h-8 md:w-8 text-white bg-black flex items-center justify-center hover:bg-pink-600 transition text-[10px] md:text-xs"
+            >
+              <span className="ml-0.5">&#10095;</span>
+            </button>
+          </div>
 
-  {/* Scroll Down Button */}
-  <div className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
-    <button className="animate-bounce">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 md:h-8 w-3 md:w-5 text-gray-600 hover:text-pink-600 transition"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </button>
-  </div>
+          {/* Scroll Down Button */}
+          <div className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+            <button className="animate-bounce">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 md:h-8 w-3 md:w-5 text-gray-600 hover:text-pink-600 transition"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+          </div>
 
-  {/* Share Section */}
-  <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
-    <h4 className="text-[10px] md:text-base lg:text-lg font-medium">Share:</h4>
-    <div className="flex gap-1 md:gap-2 text-sm md:text-lg text-black">
-      <FaInstagram className="hover:text-pink-500 transition cursor-pointer" />
-      <FaFacebookF className="hover:text-pink-500 transition cursor-pointer" />
-      <FaTwitter className="hover:text-pink-500 transition cursor-pointer" />
-      <FaPinterestP className="hover:text-pink-500 transition cursor-pointer" />
-      <FaGoogle className="hover:text-pink-500 transition cursor-pointer" />
-    </div>
-  </div>
-</div>
-
-
+          {/* Share Section */}
+          <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
+            <h4 className="text-[10px] md:text-base lg:text-lg font-medium">Share:</h4>
+            <div className="flex gap-1 md:gap-2 text-sm md:text-lg text-black">
+              <FaInstagram className="hover:text-pink-500 transition cursor-pointer" />
+              <FaFacebookF className="hover:text-pink-500 transition cursor-pointer" />
+              <FaTwitter className="hover:text-pink-500 transition cursor-pointer" />
+              <FaPinterestP className="hover:text-pink-500 transition cursor-pointer" />
+              <FaGoogle className="hover:text-pink-500 transition cursor-pointer" />
+            </div>
+          </div>
+        </div>
 
         {/* Sidebar - Placed after carousel in DOM */}
- <div
-  ref={sidebarRef}
-  className={`${isMobile ? 'fixed' : isSticky ? 'fixed top-0' : 'absolute top-[100vh]'} ${
-    isMobile
-      ? `left-0 right-0 h-3/4 z-40 transition-transform duration-300 ease-in-out ${
-          menuOpen ? 'translate-y-0' : 'translate-y-full'
-        }`
-      : `left-0 w-64 z-30 transition-all duration-300`
-  }`}
->
-  <div
-    className={`bg-pink-600 text-white shadow-md p-4 space-y-3 ${
-      isSticky ? 'h-screen overflow-y-auto' : 'h-full'
-    }`}
-  >
-    {!isMobile && (
-      <div className="flex justify-between items-center px-4 py-2">
-        <button
-          className="text-white text-3xl"
-          onClick={() => setMenuOpen(!menuOpen)}
+        <div
+          ref={sidebarRef}
+          className={`${isMobile ? 'fixed' : isSticky ? 'fixed top-0' : 'absolute top-[100vh]'} ${
+            isMobile
+              ? `left-0 top-0 h-full w-64 z-40 transition-transform duration-300 ease-in-out ${
+                  menuOpen ? 'translate-x-0' : '-translate-x-full'
+                }`
+              : `left-0 w-64 z-30 transition-all duration-300`
+          }`}
         >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
-        <img src={logo} alt="Logo" className="h-12 w-auto" />
-      </div>
-    )}
-    <ul className="space-y-1 text-sm uppercase font-medium">
-      {[
-        'Home',
-        'About',
-        'Services',
-        'Portfolio',
-        'Testimonials',
-        'Pricing',
-        'Client',
-        'Team',
-        'Contact',
-        'Blog',
-      ].map((item, index) => (
-        <li key={index}>
-          <a
-            href="#"
-            className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
-            onClick={() => isMobile && setMenuOpen(false)}
+          <div
+            className={`bg-pink-600 text-white shadow-md p-4 space-y-3 ${
+              isSticky ? 'h-screen overflow-y-auto' : 'h-full'
+            }`}
           >
-            {item}
-          </a>
-        </li>
-      ))}
-    </ul>
-    <div className="flex space-x-5 text-white text-2xl ml-5 mt-5">
-      <FaFacebookF className="hover:text-black cursor-pointer" />
-      <FaInstagram className="hover:text-black cursor-pointer" />
-      <FaPinterestP className="hover:text-black cursor-pointer" />
-      <FaTwitter className="hover:text-black cursor-pointer" />
-    </div>
-    <ul className="text-white mt-8 ml-5">
-      <li>+38 098 236 75 36</li>
-      <li>info@bloom.com</li>
-    </ul>
-  </div>
-</div>
-
-
+            {!isMobile && (
+              <div className="flex justify-between items-center px-4 py-2">
+                <button
+                  className="text-white text-3xl"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  {menuOpen ? <FiX /> : <FiMenu />}
+                </button>
+                <img src={logo} alt="Logo" className="h-12 w-auto" />
+              </div>
+            )}
+            <ul className="space-y-1 text-sm uppercase font-medium">
+              {[
+                'Home',
+                'About',
+                'Services',
+                'Portfolio',
+                'Testimonials',
+                'Pricing',
+                'Client',
+                'Team',
+                'Contact',
+                'Blog',
+              ].map((item, index) => (
+                <li key={index}>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
+                    onClick={() => isMobile && setMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="flex space-x-5 text-white text-2xl ml-5 mt-5">
+              <FaFacebookF className="hover:text-black cursor-pointer" />
+              <FaInstagram className="hover:text-black cursor-pointer" />
+              <FaPinterestP className="hover:text-black cursor-pointer" />
+              <FaTwitter className="hover:text-black cursor-pointer" />
+            </div>
+            <ul className="text-white mt-8 ml-5">
+              <li>+38 098 236 75 36</li>
+              <li>info@bloom.com</li>
+            </ul>
+          </div>
+        </div>
 
         {/* About Us Section */}
         <div className="p-4 md:p-10 relative"  style={{ marginLeft: !isMobile  ? '16rem' : '0' }}>
@@ -806,6 +800,7 @@ function App() {
               </ul>
             </div>
           </div>
+
 
           {/* Contact Form */}
           <div className="mt-10 bg-white shadow-lg p-6 max-w-3xl mx-auto">
