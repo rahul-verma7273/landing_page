@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import banner from "./assets/photo/banner-1.jpg";
+import banner1 from "./assets/photo/banner-3.jpg";
+import banner2 from "./assets/photo/banner.jpg";
 import photo from "./assets/photo/img-1.jpg";
-import logo from "./assets/photo/logo-white.png";
+import logo from "./assets/photo/jbh.jpg";
 import icon from "./assets/photo/icon-1.png";
 import icon1 from "./assets/photo/icon-2.png";
 import icon2 from "./assets/photo/icon-3.png";
@@ -75,15 +77,15 @@ function App() {
     },
     {
       id: 2,
-      title: "Creative Design Solutions",
-      description: "Innovative designs that transform your business and captivate your audience with stunning visuals.",
-      image: port1,
+      title: "The Best Ever Digital Agency",
+      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque.",
+      image: banner2,
     },
     {
       id: 3,
-      title: "Strategic Branding",
-      description: "Comprehensive branding strategies to establish your unique identity in the market.",
-      image: port2,
+      title: "The Best Ever Digital Agency",
+      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque",
+      image: banner1,
     },
   ];
 
@@ -194,7 +196,7 @@ function App() {
             {!isMobile && (
               <div className="w-full flex justify-between items-center md:px-10">
                 <button
-                  className="text-white text-3xl absolute top-80 left-10"
+                  className="text-white text-3xl absolute top-30 left-10"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   {menuOpen ? <FiX /> : <FiMenu />}
@@ -202,7 +204,7 @@ function App() {
                 <img
                   src={logo}
                   alt="Logo"
-                  className="h-12 w-auto absolute right-10 top-80"
+                  className="h-30 w-30 absolute right-10 top-20 rounded-[50%]"
                 />
               </div>
             )}
@@ -225,7 +227,7 @@ function App() {
 
         {/* Combined Navigation Controls, Slide Count, and Share Section */}
         <div
-          className="flex flex-nowrap justify-between items-center gap-2 md:gap-4 p-2 md:p-4 border-b"
+          className=" flex flex-nowrap justify-between items-center gap-2 md:gap-4 p-2 md:p-4 border-b -mt-15 w-[80%] bg-white z-20 absolute"
           style={{ marginLeft: !isMobile ? '16rem' : '0' }}
         >
           {/* Navigation Controls and Slide Count */}
@@ -302,39 +304,47 @@ function App() {
           >
             {!isMobile && (
               <div className="flex justify-between items-center px-4 py-2">
-                <button
-                  className="text-white text-3xl"
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  {menuOpen ? <FiX /> : <FiMenu />}
-                </button>
-                <img src={logo} alt="Logo" className="h-12 w-auto" />
+                 <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-16 w-16 sm:h-20 sm:w-20 rounded-[50%]"
+                />            
               </div>
             )}
-            <ul className="space-y-1 text-sm uppercase font-medium">
-              {[
-                'Home',
-                'About',
-                'Services',
-                'Portfolio',
-                'Testimonials',
-                'Pricing',
-                'Client',
-                'Team',
-                'Contact',
-                'Blog',
-              ].map((item, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
-                    onClick={() => isMobile && setMenuOpen(false)}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+           <ul className="space-y-1 text-sm uppercase font-medium mt-10">
+  {[
+    'Home',
+    'About',
+    'Services',
+    'Portfolio',
+    'Testimonials',
+    'Pricing',
+    'Client',
+    'Team',
+    'Contact',
+    'Blog',
+  ].map((item, index) => {
+    const href =
+      item === 'Blog'
+        ? 'https://www.jbhtechinnovation.com/blog'
+        : `#${item.toLowerCase()}`;
+
+    return (
+      <li key={index}>
+        <a
+          href={href}
+          className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
+          onClick={() => isMobile && setMenuOpen(false)}
+          target={item === 'Blog' ? '_blank' : undefined} // optional: open Blog in new tab
+          rel={item === 'Blog' ? 'noopener noreferrer' : undefined}
+        >
+          {item}
+        </a>
+      </li>
+    );
+  })}
+</ul>
+
             <div className="flex space-x-5 text-white text-2xl ml-5 mt-5">
               <FaFacebookF className="hover:text-black cursor-pointer" />
               <FaInstagram className="hover:text-black cursor-pointer" />
@@ -350,7 +360,7 @@ function App() {
 
         {/* About Us Section */}
         <div className="p-4 md:p-10 relative"  style={{ marginLeft: !isMobile  ? '16rem' : '0' }}>
-          <h4 className="text-pink-600">ABOUT US</h4>
+          <h4 className="text-pink-600 "id="about">ABOUT US</h4>
           <h1 className="text-4xl font-bold mt-2">WHO WE ARE</h1>
 
           <div className="mt-8 md:flex">
@@ -398,7 +408,7 @@ function App() {
 
         {/* Services Section */}
         <div className="bg-black text-white text-center py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
-          <h6 className="text-pink-600 uppercase mb-4">services</h6>
+          <h6 className="text-pink-600 uppercase mb-4" id="services">services</h6>
           <h1 className="text-4xl font-bold mb-4">WHAT WE DO</h1>
           <p className="mb-10 max-w-xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
@@ -478,7 +488,7 @@ function App() {
         {/* Portfolio Section */}
         <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
-            <h6 className="text-pink-600">PORTFOLIO</h6>
+            <h6 className="text-pink-600" id="portfolio">PORTFOLIO</h6>
             <h1 className="text-4xl md:text-5xl font-extrabold mt-4">
               OUR WORKS
             </h1>
@@ -527,7 +537,7 @@ function App() {
         {/* Testimonials Section */}
         <div className="p-4 md:p-10 relative" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h6 className="text-pink-600">THOUGHTS</h6>
-          <h1 className="text-4xl md:text-5xl font-extrabold mt-2">
+          <h1 className="text-4xl md:text-5xl font-extrabold mt-2" id="testimonials">
             TESTIMONIALS
           </h1>
 
@@ -579,7 +589,7 @@ function App() {
         <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h6 className="text-pink-600">OFFERS</h6>
-            <h1 className="text-4xl md:text-5xl font-extrabold mt-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold mt-4" id="pricing">
               THE BEST PRICE
             </h1>
             <p className="mt-4">
@@ -671,7 +681,7 @@ function App() {
         {/* Clients Section */}
         <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h6 className="text-pink-600">CUSTOMERS</h6>
-          <h1 className="text-4xl font-black mt-2">CLIENTS</h1>
+          <h1 className="text-4xl font-black mt-2" id="client">CLIENTS</h1>
 
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
@@ -712,7 +722,7 @@ function App() {
         <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h6 className="text-pink-600">WORKERS</h6>
-            <h1 className="text-4xl md:text-5xl font-bold mt-4">
+            <h1 className="text-4xl md:text-5xl font-bold mt-4" id="team">
               THE BEST TEAM
             </h1>
             <p className="mt-4">
@@ -756,7 +766,7 @@ function App() {
 
         {/* Contact Section */}
         <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
-          <h6 className="text-pink-600">CONTACT</h6>
+          <h6 className="text-pink-600" id="contact">CONTACT</h6>
           <h1 className="text-4xl md:text-5xl font-bold mt-2">KEEP IN TOUCH</h1>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -773,7 +783,6 @@ function App() {
                 <li className="hover:text-pink-600 cursor-pointer">FL 33401</li>
               </ul>
             </div>
-
             <div className="text-center">
               <img src={icon9} alt="Phone" className="w-12 h-12 mx-auto" />
               <h3 className="text-xl font-bold mt-4">Phone</h3>
