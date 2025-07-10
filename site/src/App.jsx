@@ -642,7 +642,7 @@ function App() {
                 key={index}
                 className="bg-white text-black p-8 rounded-lg relative"
               >
-                <div className="w-24 h-24 rounded-full bg-white shadow-lg absolute -top-12 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                <div className="w-24 h-24 rounded-full bg-white shadow-lg absolute -top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
                   <img src={plan.icon} alt={plan.title} className="w-12 h-12" />
                 </div>
                 <h2 className="text-2xl font-bold text-center mt-12 mb-4 relative inline-block">
@@ -856,7 +856,7 @@ function App() {
         {/* Map */}
         <div className="mt-10" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
           <iframe
-            className="w-full h-64 md:h-96"
+            className="w-full h-64 md:h-96 sm:h-50"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14009.794362831062!2d77.29806295!3d28.4022201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cdb1e486911f1%3A0x27cfdc9dfd7de52e!2sSector%2029%2C%20Faridabad%2C%20Haryana!5e0!3m2!1sen!2sin!4v1688482335012!5m2!1sen!2sin"
             allowFullScreen=""
             loading="lazy"
