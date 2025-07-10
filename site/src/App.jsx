@@ -856,7 +856,7 @@ function App() {
         {/* Map */}
         <div className="mt-10" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
           <iframe
-            className="w-full h-64 md:h-96 sm:h-50"
+            className="w-full h-64 md:h-96"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14009.794362831062!2d77.29806295!3d28.4022201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cdb1e486911f1%3A0x27cfdc9dfd7de52e!2sSector%2029%2C%20Faridabad%2C%20Haryana!5e0!3m2!1sen!2sin!4v1688482335012!5m2!1sen!2sin"
             allowFullScreen=""
             loading="lazy"
