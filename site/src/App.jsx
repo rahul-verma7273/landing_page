@@ -3,42 +3,34 @@ import { FiMenu, FiX } from "react-icons/fi";
 import banner from "./assets/photo/banner-1.jpg";
 import banner1 from "./assets/photo/banner-3.jpg";
 import banner2 from "./assets/photo/banner.jpg";
-import photo from "./assets/photo/img-1.jpg";
+import photo from "./assets/photo/innovation.jpg";
 import logo from "./assets/photo/jbh.jpg";
 import icon from "./assets/photo/icon-1.png";
 import icon1 from "./assets/photo/icon-2.png";
 import icon2 from "./assets/photo/icon-3.png";
 import icon3 from "./assets/photo/icon-4.png";
 import img from "./assets/photo/Screenshot_1-7-2025_121751_unionagency.one.jpeg";
-import port1 from "./assets/photo/portfolio-1.jpg";
-import port2 from "./assets/photo/portfolio-2.jpg";
-import port3 from "./assets/photo/portfolio-3.jpg";
-import port4 from "./assets/photo/portfolio-4.jpg";
-import port5 from "./assets/photo/portfolio-5.jpg";
-import port6 from "./assets/photo/portfolio-6.jpg";
-import auth1 from "./assets/photo/author-1.png";
-import auth2 from "./assets/photo/author-2.png";
-import auth3 from "./assets/photo/author-3.png";
+import port1 from "./assets/photo/marketings.jpg";
+import port2 from "./assets/photo/marketingse.jpg";
+import port3 from "./assets/photo/marketing.jpg";
+import port4 from "./assets/photo/about.jpg";
+import port5 from "./assets/photo/about1.jpg";
+import port6 from "./assets/photo/about3.jpeg";
 import quot from "./assets/photo/quotes.png";
 import sign from "./assets/photo/signature.png";
 import home1 from "./assets/photo/home-5.png";
 import home2 from "./assets/photo/home-6.png";
 import home3 from "./assets/photo/home-7.png";
-import cli1 from "./assets/photo/client-1.png";
-import cli2 from "./assets/photo/client-2.png";
-import cli3 from "./assets/photo/client-3.png";
-import cli4 from "./assets/photo/client-4.png";
-import cli5 from "./assets/photo/client-5.png";
-import cli6 from "./assets/photo/client-6.png";
-import cli7 from "./assets/photo/client-7.png";
-import cli8 from "./assets/photo/client-8.png";
-import cli9 from "./assets/photo/client-9.png";
-import cli10 from "./assets/photo/client-10.png";
-import cli11 from "./assets/photo/client-11.png";
-import cli12 from "./assets/photo/client-12.png";
-import team1 from "./assets/photo/team-1.jpg";
-import team2 from "./assets/photo/team-2.jpg";
-import team3 from "./assets/photo/team-3.jpg";
+import cli1 from "./assets/photo/logo-dark.png";
+import cli2 from "./assets/photo/logo.webp";
+import cli3 from "./assets/photo/logo2.png";
+import cli4 from "./assets/photo/looo-1.png";
+import cli5 from "./assets/photo/mainlogo.png";
+import cli6 from "./assets/photo/Optical logo.png";
+import cli7 from "./assets/photo/new.png";
+import cli8 from "./assets/photo/logo (1).webp";
+import team1 from "./assets/photo/ashishsir.jpg";
+import team2 from "./assets/photo/vershamam.jpg";
 import icon8 from "./assets/photo/icon-8.png";
 import icon9 from "./assets/photo/icon-9.png";
 import icon10 from "./assets/photo/icon-10.png";
@@ -48,6 +40,7 @@ import {
   FaPinterestP,
   FaTwitter,
   FaGoogle,
+  FaLinkedin,
 } from "react-icons/fa";
 import inst1 from "./assets/photo/instagram-1 (1).jpg";
 import inst2 from "./assets/photo/instagram-2.jpg";
@@ -93,24 +86,24 @@ function App() {
   const testimonials = [
     {
       id: 1,
-      name: "Anjelina Jonson",
-      role: "Web-designer",
-      quote: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames something ac turpis egestas making better lacus, vitae eleifend nisi eleifend somethoing make better Cras consectetur dolor massa, in rhoncus ante",
-      image: auth1,
+      name: "Ashish",
+      role: "Web-Designer",
+      quote: "A Web Designer is a person who designs beautiful and easy-to-use websitesThey decide how a website should look — colors, fonts, images, and layout.",
+      image: team1,
     },
     {
       id: 2,
-      name: "Michael Brown",
-      role: "Marketing Director",
+      name: "Versha",
+      role: "Graphic-Designer",
       quote: "The team delivered exceptional results that exceeded our expectations. Their attention to detail and creative approach made all the difference in our campaign.",
-      image: auth2,
+      image: team2,
     },
     {
       id: 3,
-      name: "Sarah Williams",
-      role: "CEO",
-      quote: "Working with this agency transformed our online presence. Their strategic insights and technical expertise were invaluable to our growth.",
-      image: auth3,
+      name: "Anil",
+      role: "Full Stack Developer",
+      quote: "A Full Stack Developer is someone who can build both the front-end (what users see) and the back-end (the server, database, and logic) of a website or application.",
+      image: team1,
     },
   ];
 
@@ -124,6 +117,8 @@ function App() {
         setMenuOpen(false);
       }
     };
+
+    
 
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -166,6 +161,20 @@ function App() {
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
+
+
+   
+  const [active, setActive] = useState("All");
+
+  const images = [
+    { src: port1, category: "Design" },
+    { src: port2, category: "Advertising" },
+    { src: port3, category: "UserExpirience" },
+    { src: port4, category: "Branding" },
+    { src: port5, category: "Design" },
+    { src: port6, category: "Advertising" },
+  ];
+
 
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen overflow-x-hidden">
@@ -217,8 +226,8 @@ function App() {
               {carouselItems[currentSlide].description}
             </p>
             <a
-              href="#"
-              className="mt-5 bg-pink-500 text-white px-10 py-2 rounded hover:bg-white hover:text-pink-500 transition font-semibold uppercase"
+              href="#services"
+              className="mt-5 bg-pink-500 text-white px-10 py-2 rounded hover:bg-white hover:text-pink-500 transition font-semibold uppercase" 
             >
               View More
             </a>
@@ -277,11 +286,11 @@ function App() {
           <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
             <h4 className="text-[10px] md:text-base lg:text-lg font-medium">Share:</h4>
             <div className="flex gap-1 md:gap-2 text-sm md:text-lg text-black">
-              <FaInstagram className="hover:text-pink-500 transition cursor-pointer" />
-              <FaFacebookF className="hover:text-pink-500 transition cursor-pointer" />
-              <FaTwitter className="hover:text-pink-500 transition cursor-pointer" />
-              <FaPinterestP className="hover:text-pink-500 transition cursor-pointer" />
-              <FaGoogle className="hover:text-pink-500 transition cursor-pointer" />
+             <a href="https://www.instagram.com/jbh_webstics"> <FaInstagram className="hover:text-pink-500 transition cursor-pointer" /></a>
+              <a href="https://www.facebook.com/jbhtechinnovation"><FaFacebookF className="hover:text-pink-500 transition cursor-pointer" /></a>
+              <a href="https://x.com/DigitalJbhk"><FaTwitter className="hover:text-pink-500 transition cursor-pointer" /></a>
+             <a href="https://www.linkedin.com/company/jbh-tech-innovation/"><FaLinkedin className="hover:text-pink-500 transition cursor-pointer" /></a>
+             
             </div>
           </div>
         </div>
@@ -327,7 +336,7 @@ function App() {
     const href =
       item === 'Blog'
         ? 'https://www.jbhtechinnovation.com/blog'
-        : `#${item.toLowerCase()}`;
+        : `#${item.toLowerCase()}`;       
 
     return (
       <li key={index}>
@@ -346,14 +355,15 @@ function App() {
 </ul>
 
             <div className="flex space-x-5 text-white text-2xl ml-5 mt-5">
-              <FaFacebookF className="hover:text-black cursor-pointer" />
-              <FaInstagram className="hover:text-black cursor-pointer" />
-              <FaPinterestP className="hover:text-black cursor-pointer" />
-              <FaTwitter className="hover:text-black cursor-pointer" />
+             <a href="https://www.facebook.com/jbhtechinnovation"><FaFacebookF className="hover:text-black cursor-pointer" /></a> 
+              <a href="https://www.instagram.com/jbh_webstics"><FaInstagram className="hover:text-black cursor-pointer" /></a>
+      
+            <a href="https://www.linkedin.com/company/jbh-tech-innovation/"><FaLinkedin className="hover:text-black cursor-pointer" /></a>
+             <a href="https://x.com/DigitalJbhk"> <FaTwitter className="hover:text-black cursor-pointer" /></a>
             </div>
             <ul className="text-white mt-8 ml-5">
-              <li>+38 098 236 75 36</li>
-              <li>info@bloom.com</li>
+              <li>+91 99 90 14 58 58</li>
+              <li>jbh.webstics@gmail.com</li>
             </ul>
           </div>
         </div>
@@ -371,8 +381,8 @@ function App() {
                 className="h-80 w-80 rounded mx-auto md:mx-0"
               />
               <a
-                href="#"
-                className="inline-block text-white px-12 py-2 bg-black rounded hover:bg-pink-600 transition font-semibold uppercase mt-6"
+                href="https://www.jbhtechinnovation.com/software-development-company-faridabad"
+                className="inline-block text-white px-12 py-2 bg-black rounded hover:bg-pink-600 transition font-semibold uppercase mt-6" 
               >
                 View More
               </a>
@@ -381,24 +391,19 @@ function App() {
             <div className="mt-8 md:mt-0 md:w-2/3 md:pl-8">
               <h2 className="text-lg font-bold">ALL AT A GLANCE</h2>
               <p className="text-sm text-gray-700 mt-2">
-                Phasellus mattis magna vel augue gravida eleifend. Donec sit
-                amet diam mollis, sodales lorem vel, some orci. Proin nec
-                mauris lectus. Vitae dictum urna bibendum hasellus making
-                elementum ex turpis something hendrerit diam.
+               At Jbh Tech Innovation, we provide advanced technology solutions to drive business success. Our expertise in software development, IT services, and digital transformation ensures your company stays ahead in the competitive market. Partner with us today and explore how our innovative solutions can elevate your business.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-gray-700">
                 <li className="flex items-start">
                   <span className="mr-2">✔</span>
                   <span>
-                    Aenean ultricies nec lectus et porta. Etiam vitae diam at
-                    nunc laoreet pretium quis finibus something the best nisi.
+                    AI-powered tools optimize marketing campaigns, personalize content, and enhance customer.
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">✔</span>
                   <span>
-                    In eleifend, quis egestas euismod, dui elit cursus lacus,
-                    quis iaculis sem augue non urna making the perfect.
+                    Hyper-personalization and improved customer experiences are key for better engagement.
                   </span>
                 </li>
               </ul>
@@ -411,8 +416,7 @@ function App() {
           <h6 className="text-pink-600 uppercase mb-4" id="services">services</h6>
           <h1 className="text-4xl font-bold mb-4">WHAT WE DO</h1>
           <p className="mb-10 max-w-xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-            elementum id metus ac tempus velit volutpat.
+            it means the list of tasks, solutions, or help that you or your company provides to customers or clients.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -431,8 +435,13 @@ function App() {
                   <h2 className="text-white mt-2">{service.title}</h2>
                 </a>
                 <p className="text-sm">
-                  Cras quis augue at diam dignissim vestibulum ut eleifend,
-                  quis egestas euismod, dui elit cursus
+                 Website design & development
+
+Social media presence
+
+Digital advertising campaigns
+
+Interactive media
                 </p>
               </div>
             ))}
@@ -449,18 +458,18 @@ function App() {
               {[
                 {
                   num: "01",
-                  title: "Modern Design",
-                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                  title: "Modern UI Design",
+                  desc: "Modern design = clean, simple, minimalistic, user-focused, and visually appealing design that works well on all devices.",
                 },
                 {
                   num: "02",
                   title: "Strong UX design",
-                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                  desc: "Strong UX Design means creating a design that is easy for the user to understand and usesolves their problems quickly",
                 },
                 {
                   num: "03",
                   title: "Responsive",
-                  desc: "Etiam nulla massa, aliquam sed orci vel, malesuada luctus est. In sed laoreet pharetra feugiat",
+                  desc: "Responsive design means a website or app automatically adjusts and looks good on all screen sizes and devices",
                 },
               ].map((feature, index) => (
                 <div key={index} className="flex">
@@ -493,52 +502,58 @@ function App() {
               OUR WORKS
             </h1>
             <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              A portfolio is a collection of our best work, projects, and achievements,
               <br />
-              cras elementum id metus ac tempus velit volutpat
+              shown to demonstrate our skills, creativity, and experience.
             </p>
           </div>
+          
+               <div className="mt-8 flex flex-wrap justify-center gap-2">
+        {["All", "Design", "Advertising", "UserExpirience", "Branding"].map(
+          (item, index) => (
+            <div
+              key={index}
+              onClick={() => setActive(item)}
+              className={`h-10 px-4 flex items-center cursor-pointer ${
+                active === item ? "bg-pink-600" : "hover:bg-pink-600"
+              }`}
+            >
+              <a href="#index" className="text-white">
+                {item}
+              </a>
+            </div>
+          )
+        )}
+      </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {["All", "Design", "Advertising", "UserExpirience", "Branding"].map(
-              (item, index) => (
-                <div
-                  key={index}
-                  className={`h-10 px-4 flex items-center ${
-                    index === 0 ? "bg-pink-600" : "hover:bg-pink-600"
-                  }`}
-                >
-                  <a href="#" className="text-white">
-                    {item}
-                  </a>
-                </div>
-              )
-            )}
-          </div>
-
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[port1, port2, port3, port4, port5, port6].map((port, index) => (
-              <div key={index} className="relative group">
-                <img
-                  src={port}
-                  alt={`Portfolio ${index + 1}`}
-                  className="w-full h-auto"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
-                  <button className="bg-pink-600 text-white px-6 py-2 hover:bg-white hover:text-pink-600 transition">
-                    View More
-                  </button>
-                </div>
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {images
+          .filter(
+            (img) => active === "All" || img.category === active
+          )
+          .map((port, index) => (
+            <div key={index} className="relative group">
+              <img
+                src={port.src}
+                alt={`Portfolio ${index + 1}`}
+                className="w-80 h-80"
+                id="index"
+              />
+              <div className="absolute inset-0  bg-opacity-10 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                <button className="bg-pink-600 text-white px-6 py-2 hover:bg-white hover:text-pink-600 transition mt-80">
+                  <a href="#">View More</a>
+                </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+      </div>
         </div>
 
         {/* Testimonials Section */}
         <div className="p-4 md:p-10 relative" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
-          <h6 className="text-pink-600">THOUGHTS</h6>
+          <h6 className="text-pink-600">OUR</h6>
           <h1 className="text-4xl md:text-5xl font-extrabold mt-2" id="testimonials">
-            TESTIMONIALS
+           THOUGHTS
           </h1>
 
           <div className="mt-10 md:flex">
@@ -568,7 +583,6 @@ function App() {
               </div>
             </div>
           </div>
-
           <div className="flex justify-between mt-8">
             <button 
               onClick={prevTestimonial}
@@ -593,9 +607,9 @@ function App() {
               THE BEST PRICE
             </h1>
             <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit cras
+             The best price means a price that is fair, reasonable, and offers good value for the quality of the product or service.
               <br />
-              elementum id metus ac tempus velit volutpat
+             satisfiIt’s neither too high nor too low — just the right balance where both the buyer and seller feeed.
             </p>
           </div>
 
@@ -607,10 +621,10 @@ function App() {
                 price: "$49",
                 period: "Per Packet",
                 features: [
-                  "ANIMALS consecte dipiscing",
-                  "CURABITUR feugiat feugiat",
-                  "NULLAM faucibus metus lorem",
-                  "MAKING something good",
+                 "Best price standard ensures fairness.",
+             "$4999 per packet reflects true value.",
+              "Quality and satisfaction guaranteed.",
+              "A price you can trust.",
                 ],
               },
               {
@@ -619,10 +633,10 @@ function App() {
                 price: "$99",
                 period: "Per Packet",
                 features: [
-                  "ANIMALS consecte dipiscing",
-                  "CURABITUR feugiat feugiat",
-                  "NULLAM faucibus metus lorem",
-                  "MAKING something good",
+                 " DELIVERING trusted value.",
+               "ENSURING fair prices.",
+               "FOCUSING on quality.",
+             "CREATING customer happiness.",
                 ],
               },
               {
@@ -631,10 +645,11 @@ function App() {
                 price: "$149",
                 period: "Per Packet",
                 features: [
-                  "ANIMALS consecte dipiscing",
-                  "CURABITUR feugiat feugiat",
-                  "NULLAM faucibus metus lorem",
-                  "MAKING something good",
+                  "DELIVERING premium value.",
+         "CRAFTING with excellence.",
+        "FOCUSED on satisfaction.",
+        "CREATING trust every time.",
+
                 ],
               },
             ].map((plan, index) => (
@@ -650,8 +665,7 @@ function App() {
                   <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
                 </h2>
                 <p className="text-center mb-6">
-                  Phasellus faucibus, urna ac sagittis varius, magna arcu
-                  blandit
+                The best price standard refers to a guideline or benchmark used to determine the most fair and reasonable price for a product or service, considering its quality, market value, and customer satisfaction.
                 </p>
                 <div className="text-center mb-6">
                   <a
@@ -683,39 +697,36 @@ function App() {
           <h6 className="text-pink-600">CUSTOMERS</h6>
           <h1 className="text-4xl font-black mt-2" id="client">CLIENTS</h1>
 
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              cli1,
-              cli2,
-              cli3,
-              cli4,
-              cli5,
-              cli6,
-              cli7,
-              cli8,
-              cli9,
-              cli10,
-              cli11,
-              cli12,
-            ].map((client, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-90"
-              >
-                <img
-                  src={client}
-                  alt={`Client ${index + 1}`}
-                  className="w-full h-auto max-h-16 object-contain"
-                />
-              </div>
-            ))}
-          </div>
+         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+  {[
+    { img: cli1, link: "https://vrmedhealthcare.com/account/index" },
+    { img: cli2, link: "https://venusmeddoor.com/" },
+    { img: cli3, link: "https://ktmprints.jbhtechinnovation.com/" },
+    { img: cli4, link: "https://supplyverge.com/product" },
+    { img: cli5, link: "https://youthmarts.jbhtechinnovation.com/" },
+    { img: cli6, link: "https://www.opticalexpressions.co.in/" },
+    { img: cli7, link: "https://pureform.jbhtechinnovation.com/" },
+    { img: cli8, link: "https://csbhospital.com/" },
+  ].map((client, index) => (
+    <a
+      key={index}
+      href={client.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-90"
+    >
+      <img
+        src={client.img}
+        alt={`Client ${index + 1}`}
+        className="w-full h-auto max-h-16 object-contain"
+      />
+    </a>
+  ))}
+</div>
+   
+          
 
-          <div className="flex justify-center space-x-2 mt-8">
-            <div className="h-2 w-2 rounded-full bg-pink-500"></div>
-            <div className="h-2 w-2 rounded-full bg-gray-300"></div>
-            <div className="h-2 w-2 rounded-full bg-gray-300"></div>
-          </div>
+        
         </div>
 
         {/* Team Section */}
@@ -726,23 +737,23 @@ function App() {
               THE BEST TEAM
             </h1>
             <p className="mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit cras
+             The best team is one that works together with trust, respect, and a shared goal.
               <br />
-              elementum id metus ac tempus velit volutpat
+              The best team supports each other and achieves success through unity and collaboration.
             </p>
           </div>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { img: team1, name: "Angelina Jonson", role: "Web-Designer" },
-              { img: team2, name: "Angelina Jonson", role: "Web-Designer" },
-              { img: team3, name: "Angelina Jonson", role: "Web-Designer" },
+              { img: team1, name: "Ashish", role: "Web-Designer" },
+              { img: team2, name: "Versha", role: "Graphic Designer" },
+              { img: team1, name: "Anil", role: "Full Stack Developer" },
             ].map((member, index) => (
               <div key={index} className="text-center">
                 <img
                   src={member.img}
                   alt={member.name}
-                  className="w-full h-auto"
+                  className="w-80 h-80"
                 />
                 <div className="mt-4">
                   <a
@@ -754,10 +765,10 @@ function App() {
                   <p className="text-white mt-2">{member.role}</p>
                 </div>
                 <div className="flex justify-center space-x-4 text-xl text-white mt-4">
-                  <FaFacebookF className="hover:text-pink-500 cursor-pointer" />
-                  <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-                  <FaPinterestP className="hover:text-pink-500 cursor-pointer" />
-                  <FaTwitter className="hover:text-pink-500 cursor-pointer" />
+             <a href="https://www.facebook.com/jbhtechinnovation"><FaFacebookF className="hover:text-pink-500 cursor-pointer" /></a>
+                <a href="https://www.instagram.com/jbh_webstics"> <FaInstagram className="hover:text-pink-500 cursor-pointer" /></a>
+                <a href="https://www.linkedin.com/company/jbh-tech-innovation/"> <FaLinkedin className="hover:text-pink-500 cursor-pointer" /></a>
+                <a href="https://x.com/DigitalJbhk"> <FaTwitter className="hover:text-pink-500 cursor-pointer" /></a>
                 </div>
               </div>
             ))}
@@ -775,10 +786,10 @@ function App() {
               <h3 className="text-xl font-bold mt-4">Address</h3>
               <ul className="mt-2 space-y-1">
                 <li className="hover:text-pink-600 cursor-pointer">
-                  319 Clematis
+                  Address: 357-A 1st floor, Bhoor Colony, Sector 29,
                 </li>
                 <li className="hover:text-pink-600 cursor-pointer">
-                  St.Suit,100 WPB,
+                   Badkal Road, Faridabad Haryana 121002
                 </li>
                 <li className="hover:text-pink-600 cursor-pointer">FL 33401</li>
               </ul>
@@ -788,10 +799,10 @@ function App() {
               <h3 className="text-xl font-bold mt-4">Phone</h3>
               <ul className="mt-2 space-y-1">
                 <li className="hover:text-pink-600 cursor-pointer">
-                  +38 098 236 75 36
+                  +91 99 90 14 58 58
                 </li>
                 <li className="hover:text-pink-600 cursor-pointer">
-                  +38 098 236 75 36
+                  +91 70 42 78 83 93
                 </li>
               </ul>
             </div>
@@ -801,10 +812,10 @@ function App() {
               <h3 className="text-xl font-bold mt-4">E-mail</h3>
               <ul className="mt-2 space-y-1">
                 <li className="hover:text-pink-600 cursor-pointer">
-                  info@bloom.com
+                jbh.webstics@gmail.com
                 </li>
                 <li className="hover:text-pink-600 cursor-pointer">
-                  admin@bloom.com
+                  jbh.webstics@gmail.com
                 </li>
               </ul>
             </div>
@@ -843,7 +854,7 @@ function App() {
 
         {/* Instagram Gallery */}
         <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
-          {[inst1, inst2, inst3, inst4, inst5, inst6].map((img, index) => (
+          {[port1, port2, port3, port4, port5, port6].map((img, index) => (
             <img
               key={index}
               src={img}
@@ -864,7 +875,6 @@ function App() {
             title="Google Map"
           ></iframe>
         </div>
-
         {/* Footer */}
         <div className="bg-black text-white py-8 px-4" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -878,11 +888,11 @@ function App() {
             <div className="mt-4 md:mt-0 flex items-center space-x-4">
               <h4 className="text-pink-600">Follow me:</h4>
               <div className="flex space-x-4 text-xl">
-                <FaFacebookF className="hover:text-pink-500 cursor-pointer" />
-                <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-                <FaPinterestP className="hover:text-pink-500 cursor-pointer" />
-                <FaTwitter className="hover:text-pink-500 cursor-pointer" />
-                <FaGoogle className="hover:text-pink-500 cursor-pointer" />
+               <a href="https://www.facebook.com/jbhtechinnovation"><FaFacebookF className="hover:text-pink-500 cursor-pointer" /></a>
+               <a href="https://www.instagram.com/jbh_webstics">  <FaInstagram className="hover:text-pink-500 cursor-pointer" /></a>
+              <a href="https://www.linkedin.com/company/jbh-tech-innovation/"> <FaLinkedin className="hover:text-pink-500 cursor-pointer" /></a>
+                <a href="https://x.com/DigitalJbhk"> <FaTwitter className="hover:text-pink-500 cursor-pointer" /></a>
+      
               </div>
             </div>
           </div>
