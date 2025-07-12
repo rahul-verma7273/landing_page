@@ -220,7 +220,8 @@ function App() {
             className="absolute inset-0 w-full h-full object-cover"
             alt="Banner"
           />
-          <div className="absolute inset-0 bg-opacity-50 z-10" />
+          <div className="absolute inset-0 bg-black/70 z-10" />
+
 
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-5 space-y-0">
             {!isMobile && (
@@ -239,11 +240,11 @@ function App() {
               </div>
             )}
 
-            <p className="text-gray-800 uppercase text-sm mt-0">We are</p>
-            <h1 className="text-gray-800 uppercase text-4xl md:text-6xl font-black leading-tight">
+            <p className="text-white uppercase text-sm mt-0">We are</p>
+            <h1 className="text-white uppercase text-4xl md:text-6xl font-black leading-tight">
               {carouselItems[currentSlide].title}
             </h1>
-            <p className="text-gray-800 max-w-xl text-sm md:text-base">
+            <p className="text-white max-w-xl text-sm md:text-base">
               {carouselItems[currentSlide].description}
             </p>
             <a
