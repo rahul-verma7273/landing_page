@@ -243,7 +243,7 @@ function App() {
             <h1 className="text-gray-800 uppercase text-4xl md:text-6xl font-black leading-tight">
               {carouselItems[currentSlide].title}
             </h1>
-            <p className="text-white max-w-xl text-sm md:text-base">
+            <p className="text-gray-800 max-w-xl text-sm md:text-base">
               {carouselItems[currentSlide].description}
             </p>
             <a
