@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import banner from "./assets/photo/banner-1.jpg";
-import banner1 from "./assets/photo/banner-3.jpg";
-import banner2 from "./assets/photo/banner.jpg";
+import banner from "./assets/photo/slider1lider1.jpg";
+import banner1 from "./assets/photo/marketing.jpg";
+import banner2 from "./assets/photo/marketingse.jpg";
 import photo from "./assets/photo/innovation.jpg";
 import logo from "./assets/photo/jbh.jpg";
 import icon from "./assets/photo/icon-1.png";
@@ -65,20 +65,20 @@ function App() {
     {
       id: 1,
       title: "The Best Ever Digital Agency",
-      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque.",
+      description: "The Best Ever Digital Agency is a team of creative minds, strategic thinkers, and technology experts who craft powerful digital experiences. We help brands grow, connect, and stand out in the digital world with innovative solutions tailored to their goals.",
       image: banner,
     },
     {
       id: 2,
-      title: "The Best Ever Digital Agency",
-      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque.",
-      image: banner2,
+      title: "Creative Design Studio",
+      description: "Creative Design Studio is where imagination meets innovation. We specialize in crafting visually stunning designs that capture attention and tell your story in a way words alone cannot. Every pixel we create has a purpose — to inspire, engage, and impress.",
+      image:banner1,
     },
     {
       id: 3,
-      title: "The Best Ever Digital Agency",
-      description: "Phasellus ipsum quam, bibendum non nisi in, ullamcorper pharetra. Faucibus quis magna — something here you can find the best pellentesque",
-      image: banner1,
+      title: "Online Marketing Agency",
+      description: "Online Marketing Agency is your trusted partner in the digital world. We help businesses grow their online presence, reach the right audience, and achieve measurable success through innovative marketing strategies.",
+      image: banner2,
     },
   ];
 
@@ -176,6 +176,27 @@ function App() {
   ];
 
 
+  const clients = [
+    { img: cli1, link: "https://vrmedhealthcare.com/account/index" },
+    { img: cli2, link: "https://venusmeddoor.com/" },
+    { img: cli3, link: "https://ktmprints.jbhtechinnovation.com/" },
+    { img: cli4, link: "https://supplyverge.com/product" },
+    { img: cli5, link: "https://youthmarts.jbhtechinnovation.com/" },
+    { img: cli6, link: "https://www.opticalexpressions.co.in/" },
+    { img: cli7, link: "https://pureform.jbhtechinnovation.com/" },
+    { img: cli8, link: "https://csbhospital.com/" },
+  ];
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const clientsPerPage = 4;
+  const totalPages = Math.ceil(clients.length / clientsPerPage);
+
+  const visibleClients = clients.slice(
+    currentPage * clientsPerPage,
+    (currentPage + 1) * clientsPerPage
+  );
+
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen overflow-x-hidden">
       {/* Mobile Menu Button - Positioned same as desktop */}
@@ -210,11 +231,11 @@ function App() {
                 >
                   {menuOpen ? <FiX /> : <FiMenu />}
                 </button>
-                <img
+                <a href="/"><img
                   src={logo}
                   alt="Logo"
-                  className="h-30 w-30 absolute right-10 top-20 rounded-[50%]"
-                />
+                  className="h-30 w-30 absolute right-10 top-20 rounded-[50%] cursor-pointer"
+                /></a>
               </div>
             )}
 
@@ -262,25 +283,33 @@ function App() {
             </button>
           </div>
 
-          {/* Scroll Down Button */}
-          <div className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
-            <button className="animate-bounce">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 md:h-8 w-3 md:w-5 text-gray-600 hover:text-pink-600 transition"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-          </div>
+         {/* Scroll Down Button */}
+<div className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+  <button
+    className="animate-bounce cursor-pointer"
+    onClick={() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 md:h-8 w-3 md:w-5 text-gray-600 hover:text-pink-600 transition"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+</div>
 
           {/* Share Section */}
           <div className="flex items-center flex-shrink-0 gap-1 md:gap-3">
@@ -313,11 +342,11 @@ function App() {
           >
             {!isMobile && (
               <div className="flex justify-between items-center px-4 py-2">
-                 <img
+              <a href="/"><img
                   src={logo}
                   alt="Logo"
-                  className="h-16 w-16 sm:h-20 sm:w-20 rounded-[50%]"
-                />            
+                  className="h-16 w-16 sm:h-20 sm:w-20 rounded-[50%] cursor-pointer"
+                />           </a>    
               </div>
             )}
            <ul className="space-y-1 text-sm uppercase font-medium mt-10">
@@ -342,7 +371,7 @@ function App() {
       <li key={index}>
         <a
           href={href}
-          className="block px-4 py-3 rounded hover:bg-black hover:text-white transition"
+          className="block px-4 py-3 rounded hover:bg-black hover:text-white transition font-serif"
           onClick={() => isMobile && setMenuOpen(false)}
           target={item === 'Blog' ? '_blank' : undefined} // optional: open Blog in new tab
           rel={item === 'Blog' ? 'noopener noreferrer' : undefined}
@@ -388,9 +417,9 @@ function App() {
               </a>
             </div>
 
-            <div className="mt-8 md:mt-0 md:w-2/3 md:pl-8">
-              <h2 className="text-lg font-bold">ALL AT A GLANCE</h2>
-              <p className="text-sm text-gray-700 mt-2">
+            <div className="mt-8 md:mt-0 md:w-2/3 md:pl-8 font-serif">
+              <h2 className="text-lg font-bold ">ALL AT A GLANCE</h2>
+              <p className="text-sm text-gray-700 mt-2 ">
                At Jbh Tech Innovation, we provide advanced technology solutions to drive business success. Our expertise in software development, IT services, and digital transformation ensures your company stays ahead in the competitive market. Partner with us today and explore how our innovative solutions can elevate your business.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-gray-700">
@@ -406,6 +435,16 @@ function App() {
                     Hyper-personalization and improved customer experiences are key for better engagement.
                   </span>
                 </li>
+                <li className="flex items-start">
+                <span className="mr-2">✔</span>
+                <span> AI-driven insights enable businesses to understand customer behavior, predict trends, and make smarter decisions.
+             </span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-2">✔</span>
+                <span> Machine learning algorithms help deliver the right message to the right audience at the right time, boosting conversions and loyalty.
+             </span>
+              </li>
               </ul>
             </div>
           </div>
@@ -415,15 +454,15 @@ function App() {
         <div className="bg-black text-white text-center py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h6 className="text-pink-600 uppercase mb-4" id="services">services</h6>
           <h1 className="text-4xl font-bold mb-4">WHAT WE DO</h1>
-          <p className="mb-10 max-w-xl mx-auto">
+          <p className="mb-10 max-w-xl mx-auto font-serif">
             it means the list of tasks, solutions, or help that you or your company provides to customers or clients.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 font-serif">
             {[
-              { icon: icon, title: "DIGINISSM" },
-              { icon: icon1, title: "CORPORATIVE" },
-              { icon: icon2, title: "IDENTITY" },
-              { icon: icon3, title: "CONDIMENTUM" },
+              { icon: icon, title: "WEB-DESIGN" },
+              { icon: icon1, title: "GRAPHIC-DESIGN" },
+              { icon: icon2, title: "LOGO-DESIGN" },
+              { icon: icon3, title: "UI/UX DESIGN" },
             ].map((service, index) => (
               <div key={index} className="space-y-4 p-4">
                 <a href="#">
@@ -449,7 +488,7 @@ Interactive media
         </div>
 
         {/* Features Section */}
-        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="p-4 md:p-10 font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h4 className="text-pink-600">ABOUT PRODUCT</h4>
           <h1 className="text-4xl font-extrabold mt-2">OUR FEATURES</h1>
 
@@ -495,7 +534,7 @@ Interactive media
         </div>
 
         {/* Portfolio Section */}
-        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="bg-black text-white py-16 px-4 font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h6 className="text-pink-600" id="portfolio">PORTFOLIO</h6>
             <h1 className="text-4xl md:text-5xl font-extrabold mt-4">
@@ -550,7 +589,7 @@ Interactive media
         </div>
 
         {/* Testimonials Section */}
-        <div className="p-4 md:p-10 relative" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="p-4 md:p-10 relative font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h6 className="text-pink-600">OUR</h6>
           <h1 className="text-4xl md:text-5xl font-extrabold mt-2" id="testimonials">
            THOUGHTS
@@ -600,7 +639,7 @@ Interactive media
         </div>
 
         {/* Pricing Section */}
-        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="bg-black text-white py-16 px-4 font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h6 className="text-pink-600">OFFERS</h6>
             <h1 className="text-4xl md:text-5xl font-extrabold mt-4" id="pricing">
@@ -621,10 +660,11 @@ Interactive media
                 price: "$49",
                 period: "Per Packet",
                 features: [
-                 "Best price standard ensures fairness.",
-             "$4999 per packet reflects true value.",
-              "Quality and satisfaction guaranteed.",
-              "A price you can trust.",
+                "DELIVERING consistent excellence.",
+                "UPHOLDING trusted standards.",
+                "ENSURING fairness in every dea.",
+                "SETTING benchmarks for quality.",
+
                 ],
               },
               {
@@ -633,10 +673,10 @@ Interactive media
                 price: "$99",
                 period: "Per Packet",
                 features: [
-                 " DELIVERING trusted value.",
-               "ENSURING fair prices.",
-               "FOCUSING on quality.",
-             "CREATING customer happiness.",
+                 "BUILDING strong relationships.",
+                "INNOVATING with purpose.",
+               "SERVING with integrity.",
+               "GROWING together with our customers.",
                 ],
               },
               {
@@ -645,10 +685,10 @@ Interactive media
                 price: "$149",
                 period: "Per Packet",
                 features: [
-                  "DELIVERING premium value.",
-         "CRAFTING with excellence.",
-        "FOCUSED on satisfaction.",
-        "CREATING trust every time.",
+                 "OFFERING unmatched quality.",
+                 "DESIGNING memorable experiences.",
+                 "COMMITTED to perfection.",
+                 "EARNING loyalty with every step.",
 
                 ],
               },
@@ -691,46 +731,56 @@ Interactive media
             ))}
           </div>
         </div>
-
-        {/* Clients Section */}
-        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
-          <h6 className="text-pink-600">CUSTOMERS</h6>
-          <h1 className="text-4xl font-black mt-2" id="client">CLIENTS</h1>
-
-         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-  {[
-    { img: cli1, link: "https://vrmedhealthcare.com/account/index" },
-    { img: cli2, link: "https://venusmeddoor.com/" },
-    { img: cli3, link: "https://ktmprints.jbhtechinnovation.com/" },
-    { img: cli4, link: "https://supplyverge.com/product" },
-    { img: cli5, link: "https://youthmarts.jbhtechinnovation.com/" },
-    { img: cli6, link: "https://www.opticalexpressions.co.in/" },
-    { img: cli7, link: "https://pureform.jbhtechinnovation.com/" },
-    { img: cli8, link: "https://csbhospital.com/" },
-  ].map((client, index) => (
-    <a
-      key={index}
-      href={client.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-white shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-90"
+      <div
+      className="p-4 md:p-10 font-serif"
+      style={{
+        marginLeft: !isMobile && isSticky && showSidebar ? "16rem" : "0",
+      }}
     >
-      <img
-        src={client.img}
-        alt={`Client ${index + 1}`}
-        className="w-full h-auto max-h-16 object-contain"
-      />
-    </a>
-  ))}
-</div>
-   
-          
+      <h6 className="text-pink-600">CUSTOMERS</h6>
+      <h1 className="text-4xl font-black mt-2" id="client">
+        CLIENTS
+      </h1>
 
-        
+      {/* Clients Grid */}
+      <div className="mt-10 flex flex-col items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+          {visibleClients.map((client, index) => (
+            <a
+              key={index}
+              href={client.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-90"
+            >
+              <img
+                src={client.img}
+                alt={`Client ${index + 1}`}
+                className="w-full h-auto max-h-30 object-contain"
+              />
+            </a>
+          ))}
         </div>
 
+        {/* Dots */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
+              className={`h-3 w-3 rounded-full ${
+                currentPage === index
+                  ? "bg-pink-600"
+                  : "bg-gray-300 hover:bg-pink-400"
+              }`}
+            ></button>
+          ))}
+        </div>
+      </div>
+    </div>
+
         {/* Team Section */}
-        <div className="bg-black text-white py-16 px-4" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="bg-black text-white py-16 px-4 font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h6 className="text-pink-600">WORKERS</h6>
             <h1 className="text-4xl md:text-5xl font-bold mt-4" id="team">
@@ -776,7 +826,7 @@ Interactive media
         </div>
 
         {/* Contact Section */}
-        <div className="p-4 md:p-10" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
+        <div className="p-4 md:p-10 font-serif" style={{ marginLeft: !isMobile && isSticky && showSidebar ? '16rem' : '0' }}>
           <h6 className="text-pink-600" id="contact">CONTACT</h6>
           <h1 className="text-4xl md:text-5xl font-bold mt-2">KEEP IN TOUCH</h1>
 
@@ -815,7 +865,7 @@ Interactive media
                 jbh.webstics@gmail.com
                 </li>
                 <li className="hover:text-pink-600 cursor-pointer">
-                  jbh.webstics@gmail.com
+                support@jbhtechinnovation.com
                 </li>
               </ul>
             </div>
@@ -823,7 +873,7 @@ Interactive media
 
 
           {/* Contact Form */}
-          <div className="mt-10 bg-white shadow-lg p-6 max-w-3xl mx-auto">
+          <div className="mt-10 bg-white shadow-lg p-6 max-w-3xl mx-auto font-serif">
             <h2 className="text-2xl font-bold mb-6">
               Do you have any question?
             </h2>
@@ -879,7 +929,7 @@ Interactive media
         <div className="bg-black text-white py-8 px-4" style={{ marginLeft: !isMobile && isSticky ? '16rem' : '0' }}>
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
             <div>
-              <h1 className="text-xl font-bold">
+              <h1 className="text-xl font-bold font-serif">
                 © 2025 All rights reserved. Development with ❤ by
                 <br />
                 JBH Tech.
