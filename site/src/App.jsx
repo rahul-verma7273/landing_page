@@ -112,9 +112,9 @@ function App() {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (!mobile) {
-        setMenuOpen(false);
-      } else {
         setMenuOpen(true);
+      } else {
+        setMenuOpen(false);
       }
     };
 
