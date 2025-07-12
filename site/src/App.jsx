@@ -112,9 +112,9 @@ function App() {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
       if (!mobile) {
-        setMenuOpen(true);
-      } else {
         setMenuOpen(false);
+      } else {
+        setMenuOpen(true);
       }
     };
 
@@ -362,12 +362,14 @@ function App() {
     'Team',
     'Contact',
     'Blog',
-  ].map((item, index) => {
+   ].map((item, index) => {
     const href =
       item === 'Blog'
         ? 'https://www.jbhtechinnovation.com/blog'
-        : `#${item.toLowerCase()}`;       
-
+        : item === 'Home'
+        ? '/'                // 👈 Home refresh
+        : `#${item.toLowerCase()}`;
+ 
     return (
       <li key={index}>
         <a
